@@ -515,11 +515,11 @@ var TiFighter = (function(window) {
    *     }
    *   });
    *
-   *   // Use noasync to return output
+   *   // Use async: false to return output
    *   var output = TiFighter.ajax({
    *     url: '/pong',
    *     method: 'GET',
-   *     nosync: true
+   *     async: false
    *   });
    */
 
@@ -531,7 +531,7 @@ var TiFighter = (function(window) {
     }
 
     var xhr   = Ti.Network.createHTTPClient(),
-        async = settings.noasync == true ? false : true;
+        async = settings.async === false ? false : true;
 
     xhr.setTimeout(settings.timeout || 60000);
     xhr.open(settings.method || 'GET', settings.url, async);
