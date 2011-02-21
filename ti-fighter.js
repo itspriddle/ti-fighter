@@ -26,17 +26,23 @@ var TiFighter = (function(window) {
    */
 
   TiFighter.init = function(el, context) {
-    // TODO: Add support for passing a raw object as el
     if ( ! el) {
       return this;
-    } else if (typeof el == 'string') {
+    } else {
+      var target;
+      if (typeof el == 'string') {
+        target    = context[el];
+        this.name = target;
+      } else {
+        target = el;
+      }
+
       context = context || window;
 
-      if (context[el] !== undefined) {
+      if (target !== undefined) {
         this.context = context;
-        this.element = context[el];
-        this.name    = el;
-        var type     = context[el].toString().match(/TiUI([A-Z][a-zA-Z]+)/);
+        this.element = target;
+        var type     = target.toString().match(/TiUI([A-Z][a-zA-Z]+)/);
         if ( !! type) {
           this.type = type[1];
         }
