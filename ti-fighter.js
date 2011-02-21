@@ -14,6 +14,7 @@ var TiFighter = (function(window) {
   /**
    * Initialize a new TiFighter object
    */
+
   var TiFighter = function(el, context) {
     return new TiFighter.init(el, context);
   };
@@ -681,4 +682,3 @@ var TiFighter = (function(window) {
   return TiFighter;
 
 })(this);
-
