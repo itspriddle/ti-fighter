@@ -321,7 +321,7 @@ var TiFighter = (function(window) {
    */
 
   TiFighter.development = function(callback) {
-    var sim = Ti.Platform.model == 'google_sdk' || Ti.Platform.model == 'Simulator';
+    var sim = Ti.Platform.model.match(/sdk|Simulator/);
     if (sim && callback) {
       return callback();
     } else {
