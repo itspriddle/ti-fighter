@@ -503,7 +503,7 @@ var TiFighter = (function(window) {
    *
    *   TiFighter.ajax({
    *     url: '/pong',
-   *     method: 'PUT',
+   *     type: 'PUT',
    *     onload: function() {
    *       alert('It worked!');
    *     },
@@ -519,7 +519,7 @@ var TiFighter = (function(window) {
    *   // Use async: false to return output
    *   var output = TiFighter.ajax({
    *     url: '/pong',
-   *     method: 'GET',
+   *     type: 'GET',
    *     async: false
    *   });
    */
@@ -535,10 +535,10 @@ var TiFighter = (function(window) {
         async = settings.async === false ? false : true;
 
     xhr.setTimeout(settings.timeout || 60000);
-    xhr.open(settings.method || 'GET', settings.url, async);
+    xhr.open(settings.type || 'GET', settings.url, async);
 
-    if (settings.method == 'PUT' || settings.method == 'DELETE') {
-      xhr.setRequestHeader('X-HTTP-Method-Override', settings.method);
+    if (settings.type == 'PUT' || settings.type == 'DELETE') {
+      xhr.setRequestHeader('X-HTTP-Method-Override', settings.type);
     }
 
     TiFighter.each(['onload', 'onerror', 'onreadystatechange', 'onsendstream'], function(callback) {
