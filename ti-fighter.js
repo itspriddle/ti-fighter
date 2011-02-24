@@ -547,7 +547,13 @@ var TiFighter = (function(window) {
       }
     });
 
-    if (settings.headers && settings.headers.length > 0) {
+    if (settings.username) {
+      settings.headers = settings.headers || {};
+      settings.headers.Authorization = 'Basic ' +
+        String(Ti.Utils.base64encode(settings.username + ':' + settings.password));
+    }
+
+    if (settings.headers) {
       TiFighter.each(settings.headers, function(val, key) {
         xhr.setRequestHeader(key, val);
       });
