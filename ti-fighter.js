@@ -117,11 +117,15 @@ var TiFighter = (function(window) {
     },
 
     /**
-     * Create or execute bind event (see click above for details)
+     * Create or execute focus event (see click above for details)
      */
 
     focus: function(callback) {
-      this._bind_or_trigger('focus', callback);
+      if (callback) {
+        this.bind('focus', callback);
+      } else {
+        this.element.focus();
+      }
       return this;
     },
 
@@ -130,7 +134,11 @@ var TiFighter = (function(window) {
      */
 
     blur: function(callback) {
-      this._bind_or_trigger('blur', callback);
+      if (callback) {
+        this.bind('blur', callback);
+      } else {
+        this.element.focus();
+      }
       return this;
     },
 
