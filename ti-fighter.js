@@ -542,6 +542,10 @@ var TiFighter = (function(window) {
     var xhr   = Ti.Network.createHTTPClient(),
         async = settings.async === false ? false : true;
 
+    if ($.android() && async === false) {
+      TiFighter.console("WARNING: Android doesn't support async = false", 'error');
+    }
+
     xhr.setTimeout(settings.timeout || 60000);
     xhr.open(settings.type || 'GET', settings.url, async);
 
