@@ -449,6 +449,12 @@ var TiFighter = (function(window) {
 
   // --------------------------------------------------------------------
 
+  /**
+   * Converts a date into a "relative" notation. Eg: 1 hour ago, 2 days ago, about
+   * 5 minutes ago.  Based on GitHub's jQuery Relatize Date
+   * (https://github.com/github/jquery-relatize_date).
+   */
+
   TiFighter.relatizeDate = function(date, includeTime) {
     function distanceOfTimeInWords(fromTime, toTime, includeTime) {
 
