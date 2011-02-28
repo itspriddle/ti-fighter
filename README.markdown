@@ -438,6 +438,37 @@ Based on this [gist](https://gist.github.com/470113).
     });
 
 
+## Extending TiFighter
+
+TiFighter objects can be extended similar to jQuery. For example, if you
+wanted to add a `title()` function:
+
+    TiFighter.fn.title = function(title) {
+      if (title) {
+        return this.attr('title', title);
+      } else {
+        return this.attr('title');
+      }
+    };
+
+    var label = Ti.UI.createLabel({ title: "Hello!" });
+
+    TiFighter(my_label).title()           // Hello
+    TiFighter(my_label).title('Goodbye'); // label.title is now 'Goodbye'
+
+
+Global helpers can be added to TiFighter as such:
+
+    if ( ! TiFighter.my_helper) {
+      TiFighter.my_helper = function() {
+        // do something
+      };
+    }
+
+    // Use it
+    TiFighter.my_helper();
+
+
 ## License
 
 MIT License, see LICENSE.
