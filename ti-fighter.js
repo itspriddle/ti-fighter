@@ -124,7 +124,7 @@ var TiFighter = (function(window) {
       if (callback) {
         this.bind('focus', callback);
       } else {
-        this.element.focus();
+        this.element.focus(); // fireEvent('focus') doesn't work here
       }
       return this;
     },
@@ -137,7 +137,7 @@ var TiFighter = (function(window) {
       if (callback) {
         this.bind('blur', callback);
       } else {
-        this.element.focus();
+        this.element.blur(); // fireEvent('blur') doesn't work here
       }
       return this;
     },
