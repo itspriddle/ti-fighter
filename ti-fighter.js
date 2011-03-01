@@ -282,9 +282,12 @@ var TiFighter = (function(window) {
    * Extends destination with source's attributes
    */
 
-  TiFighter.extend = function(destination, source) {
+  TiFighter.extend = function(destination, source, deepcopy) {
+    deepcopy = deepcopy || false;
     for (var prop in source) {
-      if (source[prop]) {
+      if (deepcopy && source[prop] && source[prop].constructor === Object) {
+        destination[prop] = TiFighter.extend(destination[prop], source[prop]);
+      } else if (source[prop]) {
         destination[prop] = source[prop];
       }
     }
