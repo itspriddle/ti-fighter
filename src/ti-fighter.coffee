@@ -276,7 +276,7 @@ class TiFighter
         when 'I' then out = pad((hours + 12) % 12)
         when 'm' then out = pad(month + 1)
         when 'M' then out = pad(minutes)
-        when 'p' then out = hours > 12 ? 'PM' : 'AM'
+        when 'p' then out = hours > 12 && 'PM' || 'AM'
         when 'S' then out = pad(date.getSeconds())
         when 'w' then out = day
         when 'y' then out = pad(date.getFullYear() % 100)
