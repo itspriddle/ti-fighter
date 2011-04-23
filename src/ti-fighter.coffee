@@ -14,7 +14,7 @@ class TiFighter
   # would be usually be the current global namespace in your application.
   #
   # Usage:
-  #     TiFighter([Titanium Object], context)
+  #     TiFighter([Titanium Object], context);
   constructor: (el, context) ->
     return new TiFighter.init el, context
 
@@ -265,10 +265,10 @@ class TiFighter
   # Simple key/value store using Ti.App.Properties
   #
   # Set config:
-  #     TiFighter.config('user', {username: 'itspriddle'})
+  #     TiFighter.config('user', {username: 'itspriddle'});
   #
   # Get config:
-  #     TiFighter.config('user')
+  #     TiFighter.config('user');
   #
   # Delete config:
   #     TiFighter.config('user', null);
@@ -346,12 +346,12 @@ class TiFighter
   # Detect Android
   #
   # If callback is supplied and this is Android, execute and return it.
-  # Otherwise return true if android or false
+  # Otherwise return true if Android or false
   #
   # Usage:
-  #     TiFighter.development(function () {
+  #     TiFighter.android(function () {
   #       // This code only runs on Android
-  #     })l
+  #     });
   @android = (callback) ->
     android = Ti.Platform.osname == 'android'
     if android && callback
@@ -440,9 +440,8 @@ class TiFighter
   # Returns false if object is false/undefined or a blank string
   @isset = (object) -> object? && TiFighter.trim(object) != ''
 
-  # Get data via AJAX. This is based on jQuery's AJAX function as much as
-  # possible. **Warning:** Syncronous XHR operations are not supported on
-  # Android!
+  # Wrapper for `Ti.Network.createHTTPClient()`. Settings accept url, method,
+  # headers, and callbacks invoked by `Ti.Network.createHTTPClient()`.
   #
   # Usage:
   #

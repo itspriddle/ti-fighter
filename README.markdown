@@ -1,28 +1,24 @@
 # TiFighter
 
-TiFighter is a jQuery-like library for use with Titanium Mobile applications.
+TiFighter is a jQuery-like library designed to help you wage intergalactic war
+on your Titanium Mobile applications.
 
 
 ## Setup
 
-Include with `Ti.include('path/to/ti-fighter.js')` or copy it to your own
-script.
+Copy `lib/ti-fighter.js` to your project, I usually keep it in
+`Resources/includes`.
 
-I suggest using git submodules in your app (because you're using git with
-your app, right?)
-
-    cd /path/to/app
-    mkdir vendor
-    git submodule add git://github.com/itspriddle/ti-fighter.git vendor/ti-fighter
-    git submoudle init
-    cd Resources
-    mkdir includes
-    cd includes
-    ln -s ../../vendor/ti-fighter/ti-fighter.js
+Include with `Ti.include('path/to/ti-fighter.js')`.
 
 In app.js (or elsewhere):
 
     Ti.include('includes/ti-fighter.js');
+
+If you want `$`:
+
+    Ti.includes('includes/ti-fighter.js');
+    var $ = TiFighter;
 
 
 ## TiFighter Usage
@@ -54,8 +50,7 @@ TiFighter instances include a number of methods similar to jQuery, such as
 ## TiFighter Instance Methods
 
 TiFighter instances include the methods defined below. Note that TiFighter
-instances will be referred to as `el` (eg:
-`var el = TiFighter('my_window')`):
+instances will be referred to as `el` (eg: `var el = TiFighter('my_window')`):
 
 
 ### el.bind
@@ -335,7 +330,7 @@ Usage with callback:
 
 ### TiFighter.strftime
 
-Functions similarly to Ruby's Time.strftime function. Based on GitHub's
+Functions similarly to Ruby's `Time.strftime` function. Based on GitHub's
 [jQuery Relatize Date](https://github.com/github/jquery-relatize_date).
 
     TiFighter.strftime(new Date(), '%Y-%m-%d'); // '2010-12-13'
@@ -359,17 +354,15 @@ Trims leading/trailing whitespace from string.
 
 ### TiFighter.isset
 
-Returns false if element is undefined or a blank string ("").
+Returns `false` if element is `undefined` or a blank string ("").
 
     TiFighter.isset(object);
 
 
 ### TiFighter.ajax
 
-Wrapper for Ti.Network.createHTTPClient(). Settings accept url, method,
-headers, and callbacks invoked by Ti.NetworkcreateHTTPClient(). Where
-possible, you should use one of the REST handlers which invoke this (TiFighter.get,
-TiFighter.post, TiFighter.put, and TiFighter.del).
+Wrapper for `Ti.Network.createHTTPClient()`. Settings accept url, method,
+headers, and callbacks invoked by `Ti.Network.createHTTPClient()`.
 
     TiFighter.ajax({
       url: '/pong',
@@ -386,13 +379,16 @@ TiFighter.post, TiFighter.put, and TiFighter.del).
       }
     });
 
-    // Use noasync to return output
+To run a synchronous call:
+
     var output = TiFighter.ajax({
       url: '/pong',
       method: 'GET',
-      nosync: true
+      async: false
     });
 
+Note that currently `Ti.Network.createHTTPClient()` does not support
+synchronous operation on Android.
 
 ### TiFighter.get
 
@@ -438,6 +434,16 @@ Based on this [gist](https://gist.github.com/470113).
     });
 
 
+### TiFighter.include
+
+Includes a secondary Javascript file relative from your `Resources/`
+directory. Usage is the same as `Ti.include()`. From
+[Titanium Redux](https://github.com/dawsontoth/Appcelerator-Titanium-Redux/blob/5e3cb2a64fc45dcd67fe21562852c44d6737c27c/redux.js#L158-191).
+
+    // Loads Resources/includes/file.js, Resources/vendor/another.js
+    TiFighter.include('includes/file.js', 'vendor/another.js');
+
+
 ## Extending TiFighter
 
 TiFighter objects can be extended similar to jQuery. For example, if you
@@ -456,7 +462,6 @@ wanted to add a `title()` function:
     TiFighter(my_label).title()           // Hello
     TiFighter(my_label).title('Goodbye'); // label.title is now 'Goodbye'
 
-
 Global helpers can be added to TiFighter as such:
 
     if ( ! TiFighter.my_helper) {
@@ -467,6 +472,13 @@ Global helpers can be added to TiFighter as such:
 
     // Use it
     TiFighter.my_helper();
+
+
+## Development
+
+TiFighter is written in CoffeeScript. If you're hacking on it, you should make
+changes to `src/ti-fighter.coffee` and then run `make`. The compiled
+JavaScript will be available in `lib/ti-fighter.js`.
 
 
 ## License
